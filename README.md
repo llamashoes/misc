@@ -1,1 +1,1 @@
-Vairous scripts and programs I have written for my own use. 
+Various scripts and programs I have written for my own use. 
