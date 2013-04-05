@@ -1,0 +1,129 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>mspaint_test.sikuli\mspaint_test.sikuli</h2> <a href="mspaint_test.sikuli\mspaint_test.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># MSPaint Test
+</span>myApp = App.open(<span class="str">"mspaint"</span>)
+<span class="skw">wait</span>(<img src="IIEIEIEIEIII.png" />, <span class="dig">20</span>)
+
+<span class="cmt">#locate corners
+</span>topLeft = <span class="skw">find</span>(Pattern(<img src="1315415458910.png" />).similar(<span class="dig">0.00</span>).targetOffset(-<span class="dig">6</span>,-<span class="dig">3</span>))
+topRight = <span class="skw">find</span>(Pattern(<img src="1315415491403.png" />).similar(<span class="dig">0.00</span>))
+bottomLeft = <span class="skw">find</span>(Pattern(<img src="1315415515736.png" />).similar(<span class="dig">0.00</span>).targetOffset(-<span class="dig">1</span>,-<span class="dig">1</span>))
+bottomRight = <span class="skw">find</span>(Pattern(<img src="1315415538989.png" />).similar(<span class="dig">0.00</span>).targetOffset(<span class="dig">1</span>,-<span class="dig">2</span>))
+centerX = ((topLeft.getTarget().getX())+(bottomRight.getTarget().getX()))/<span class="dig">2</span>
+
+
+<span class="kw">print</span> topLeft.getTarget()
+<span class="kw">print</span> bottomLeft.getTarget()
+<span class="kw">print</span> bottomRight.getTarget()
+<span class="kw">print</span> centerX
+
+<span class="skw">click</span>(<img src="1315415967452.png" />)
+<span class="cmt"># Start Drawing
+</span><span class="kw">def</span> createBox():
+        i = <span class="dig">0</span>
+        <span class="kw">print</span> bottomLeft.getTarget().offset(i, -i).getY()
+        <span class="kw">print</span> topLeft.getTarget().offset(i, i).getY()
+        <span class="kw">print</span> (bottomLeft.getTarget().offset(i, -i).getY())-(topLeft.getTarget().offset(i, i).getY())
+        <span class="kw">while</span> (bottomLeft.getTarget().offset(i, -i).getY())-(topLeft.getTarget().offset(i, i).getY()) &gt; <span class="dig">50</span>:
+                <span class="kw">print</span> (bottomLeft.getTarget().offset(i, -i).getY())-(topLeft.getTarget().offset(i, i).getY())
+                <span class="cmt"># Left Line
+</span>                hover(bottomLeft.getTarget().offset(i, -i))
+                mouseDown(Button.LEFT)
+                mouseMove(topLeft.getTarget().offset(i, i))
+                mouseUp()
+
+                <span class="cmt">#Bottom Line
+</span>                hover(bottomRight.getTarget().offset(-i, -i))
+                mouseDown(Button.LEFT)
+                mouseMove(bottomLeft.getTarget().offset(i, -i))
+                mouseUp()
+
+                <span class="cmt">#Right Line
+</span>                hover(topRight.getTarget().offset(-i, i))
+                mouseDown(Button.LEFT)
+                mouseMove(bottomRight.getTarget().offset(-i, -i))
+                mouseUp()
+
+                <span class="cmt">#Top line
+</span>                hover(topLeft.getTarget().offset(i, i))
+                mouseDown(Button.LEFT)
+                mouseMove(topRight.getTarget().offset(-i, i))
+                mouseUp()
+                i = i+<span class="dig">5</span>
+
+createBox()
+<span class="cmt"># Exit when done
+</span><span class="cmt">#myApp.close()</span>
+</pre>
+</body>
+</html>

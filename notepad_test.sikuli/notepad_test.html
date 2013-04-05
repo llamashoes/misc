@@ -1,0 +1,129 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>notepad_test.sikuli\notepad_test.sikuli</h2> <a href="notepad_test.sikuli\notepad_test.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">def</span> type_in_app(app, message):
+        app.focus()
+        <span class="skw">type</span>(message)
+
+np1 = App.open(<span class="str">"notepad"</span>);
+c = App.open(<span class="str">"calc"</span>);
+<span class="skw">wait</span>(<span class="dig">2</span>)
+
+np1.focus()
+<span class="skw">type</span>(<span class="str">"now the focus is on notepad\n"</span>)
+<span class="skw">wait</span>(<span class="dig">1</span>)
+
+c.focus()
+<span class="skw">type</span>(<span class="str">"12+44"</span>)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+
+np1.focus()
+<span class="skw">type</span>(<span class="str">"back to notepad\n"</span>)
+<span class="skw">wait</span>(<span class="dig">1</span>)
+
+c.focus()
+<span class="skw">type</span>(<span class="str">"45+4="</span>)
+<span class="skw">wait</span>(<span class="dig">1</span>)
+c.close()
+
+np2 = App.open(<span class="str">"notepad"</span>);
+<span class="skw">wait</span>(<span class="dig">2</span>)
+
+np2.focus
+<span class="skw">type</span>(<span class="str">"another notepad is now open\n"</span>)
+
+<span class="cmt">#Resize
+</span><span class="cmt">#bottomCorner = find(Pattern("1320338375450.png").similar(0.00).targetOffset(11,10))
+</span><span class="cmt">#hover(bottomCorner)
+</span><span class="cmt">#mouseDown(Button.LEFT)
+</span><span class="cmt">#mouseMove(Env.getMouseLocation().offset(-100, -100))
+</span><span class="cmt">#mouseUp()
+</span>
+<span class="cmt">#Move
+</span><span class="skw">wait</span>(<span class="dig">1</span>)
+topLeft = <span class="skw">find</span>(<img src="Untitled1Not.png" />)
+hover(topLeft)
+mouseDown(Button.LEFT)
+mouseMove(Env.getMouseLocation().offset(-<span class="dig">50</span>, -<span class="dig">200</span>))
+mouseUp()
+
+<span class="cmt"># Lets use a method instead to switch apps and type in data
+</span><span class="kw">for</span> n <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>):
+        type_in_app(np2, <span class="str">"\nmore\n\nmore\n\nmore\n\nmore\n"</span>)
+        type_in_app(np1, <span class="str">"\n\n\nAnother Line\n\nAnd Another"</span>)
+
+<span class="skw">popup</span>(<span class="str">"Now let's close them both withouth saving"</span>)
+np2.close()
+np1.close()
+</pre>
+</body>
+</html>
